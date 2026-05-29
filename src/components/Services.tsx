@@ -8,74 +8,75 @@ const services = [
     number: "01",
     title: "Brand Identity",
     description:
-      "Complete visual identity systems — from logo design and color architecture to brand guidelines that ensure consistency across every touchpoint.",
+      "Complete visual identity systems — logo design, color architecture, and brand guidelines ensuring consistency across every touchpoint.",
   },
   {
     number: "02",
     title: "Visual Systems",
     description:
-      "Scalable design systems that maintain brand integrity as you grow. Typography hierarchies, grid systems, iconography, and component libraries.",
+      "Scalable design systems that maintain brand integrity. Typography hierarchies, grid systems, iconography, and component libraries.",
   },
   {
     number: "03",
     title: "Packaging Design",
     description:
-      "Premium packaging that commands shelf presence. From concept to production-ready files, designed to elevate the unboxing experience.",
+      "Premium packaging that commands shelf presence. From concept to production-ready files, elevating the unboxing experience.",
   },
   {
     number: "04",
     title: "Social Media Art Direction",
     description:
-      "Scroll-stopping visual content strategies. Campaign concepts, template systems, and creative direction that builds brand recognition.",
+      "Scroll-stopping visual content strategies. Campaign concepts, template systems, and creative direction that builds recognition.",
   },
   {
     number: "05",
     title: "Creative Direction",
     description:
-      "High-level creative vision and art direction for campaigns, photoshoots, and brand launches. Turning strategic briefs into visual masterpieces.",
+      "High-level creative vision for campaigns, photoshoots, and brand launches. Turning strategic briefs into visual masterpieces.",
   },
   {
     number: "06",
     title: "Brand Strategy",
     description:
-      "Deep-dive brand positioning, audience analysis, and competitive research that forms the strategic foundation for every visual decision.",
+      "Brand positioning, audience analysis, and competitive research forming the strategic foundation for every visual decision.",
   },
 ];
 
 function ServiceItem({ service, index }: { service: (typeof services)[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.08 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group border-b border-border py-8 md:py-12 cursor-pointer"
+      className="group border-b border-border py-6 sm:py-8 md:py-10 cursor-pointer"
     >
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-6 md:gap-10">
-          <span className="font-clash text-sm text-accent/50 md:text-base">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
+          <span className="font-clash text-xs text-accent/40 sm:text-sm">
             {service.number}
           </span>
           <motion.h3
-            animate={{ x: isHovered ? 20 : 0 }}
-            transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-            className="font-clash text-2xl font-medium text-foreground transition-colors duration-300 group-hover:text-accent md:text-4xl"
+            animate={{ x: isHovered ? 12 : 0 }}
+            transition={{ duration: 0.35, ease: [0.76, 0, 0.24, 1] }}
+            className="font-clash text-xl font-medium text-foreground transition-colors duration-300 group-hover:text-accent sm:text-2xl md:text-3xl lg:text-4xl"
           >
             {service.title}
           </motion.h3>
         </div>
         <motion.div
-          animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 20 }}
-          transition={{ duration: 0.4 }}
-          className="md:max-w-sm"
+          initial={false}
+          animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
+          transition={{ duration: 0.3 }}
+          className="sm:max-w-xs md:max-w-sm"
         >
-          <p className="font-satoshi text-sm leading-relaxed text-muted md:text-base">
+          <p className="font-satoshi text-xs leading-relaxed text-muted sm:text-sm">
             {service.description}
           </p>
         </motion.div>
@@ -86,28 +87,28 @@ function ServiceItem({ service, index }: { service: (typeof services)[0]; index:
 
 export default function Services() {
   const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
+  const isHeaderInView = useInView(headerRef, { once: true, margin: "-80px" });
 
   return (
-    <section id="services" className="relative py-32 px-6 md:px-12">
+    <section id="services" className="relative py-24 px-5 sm:py-28 sm:px-8 md:px-12 lg:py-32">
       <div className="mx-auto max-w-[1400px]">
-        <div ref={headerRef} className="mb-16">
+        <div ref={headerRef} className="mb-10 sm:mb-14 lg:mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="flex items-center gap-4 mb-6"
+            transition={{ duration: 0.7 }}
+            className="flex items-center gap-3 mb-5 sm:gap-4 sm:mb-6"
           >
-            <span className="h-[1px] w-12 bg-accent" />
-            <span className="font-satoshi text-xs uppercase tracking-[0.3em] text-accent">
+            <span className="h-px w-8 bg-accent sm:w-12" />
+            <span className="font-satoshi text-[10px] uppercase tracking-[0.3em] text-accent sm:text-xs">
               Services
             </span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-clash text-4xl font-semibold text-foreground md:text-6xl lg:text-7xl"
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="font-clash text-[clamp(2rem,5vw,4.5rem)] font-semibold leading-[1.1] text-foreground"
           >
             What I bring{" "}
             <span className="text-gradient">to the table.</span>

@@ -1,18 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore, useState } from "react";
 import { motion } from "framer-motion";
 
+function subscribe() {
+  return () => {};
+}
+
+function getIsTouchClient() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+}
+
+function getIsTouchServer() {
+  return true;
+}
+
 export default function CustomCursor() {
+  const isTouch = useSyncExternalStore(subscribe, getIsTouchClient, getIsTouchServer);
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
-
-    setIsVisible(true);
+    if (isTouch) return;
 
     const move = (e: MouseEvent) => {
       setPos({ x: e.clientX, y: e.clientY });
@@ -35,18 +44,18 @@ export default function CustomCursor() {
       setIsHovering(false);
     };
 
-    window.addEventListener("mousemove", move);
-    window.addEventListener("mouseover", handleOver);
-    window.addEventListener("mouseout", handleOut);
+    window.addEventListener("mousemove", move, { passive: true });
+    window.addEventListener("mouseover", handleOver, { passive: true });
+    window.addEventListener("mouseout", handleOut, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", move);
       window.removeEventListener("mouseover", handleOver);
       window.removeEventListener("mouseout", handleOut);
     };
-  }, []);
+  }, [isTouch]);
 
-  if (!isVisible) return null;
+  if (isTouch) return null;
 
   return (
     <>
@@ -57,7 +66,7 @@ export default function CustomCursor() {
           y: pos.y - 4,
           scale: isHovering ? 0 : 1,
         }}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
+        transition={{ type: "spring", stiffness: 500, damping: 28, mass: 0.5 }}
       >
         <div className="h-2 w-2 rounded-full bg-accent" />
       </motion.div>
@@ -68,10 +77,10 @@ export default function CustomCursor() {
           y: pos.y - 20,
           scale: isHovering ? 1.5 : 1,
         }}
-        transition={{ type: "spring", stiffness: 150, damping: 15 }}
+        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.5 }}
       >
         <div
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/50"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-accent/40"
           style={{ mixBlendMode: "difference" }}
         />
       </motion.div>
