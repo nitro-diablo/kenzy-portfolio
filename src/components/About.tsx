@@ -1,102 +1,87 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
-
-const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "4+", label: "Years of Craft" },
-  { value: "30+", label: "Brands Transformed" },
-  { value: "100%", label: "Client Satisfaction" },
-];
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="relative py-24 px-5 sm:py-28 sm:px-8 md:px-12 lg:py-32">
-      <div className="mx-auto max-w-[1400px]" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="flex items-center gap-3 mb-5 sm:gap-4 sm:mb-6"
-        >
-          <span className="h-px w-8 bg-accent sm:w-12" />
-          <span className="font-satoshi text-[10px] uppercase tracking-[0.3em] text-accent sm:text-xs">
-            About
-          </span>
-        </motion.div>
+    <section id="about" className="section-padding bg-background-light relative" ref={ref}>
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Image Side */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
+            <div className="relative overflow-hidden rounded-lg">
+              <div
+                className="aspect-[4/5] bg-cover bg-center"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80')",
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+            </div>
+            {/* Floating Badge */}
+            <div className="absolute -bottom-6 -right-6 lg:right-6 glass rounded-xl p-6 warm-glow">
+              <p className="text-accent font-[var(--font-playfair)] text-4xl font-bold">40+</p>
+              <p className="text-foreground-muted text-sm mt-1">Years of Restaurant Experience</p>
+            </div>
+          </motion.div>
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="font-clash text-[clamp(1.75rem,4.5vw,3.5rem)] font-semibold leading-[1.12] text-foreground"
-            >
-              Every brand has a story.{" "}
-              <span className="text-gradient">I make sure the world feels it.</span>
-            </motion.h2>
-          </div>
+          {/* Text Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="space-y-6"
+          >
+            <p className="section-label">Our Story</p>
+            <h2 className="text-4xl md:text-5xl font-[var(--font-playfair)] font-bold leading-tight">
+              A Family Tradition of{" "}
+              <span className="text-accent">Excellent Food</span>
+            </h2>
+            <div className="divider" />
+            <p className="text-foreground-muted text-lg leading-relaxed">
+              The owners of Mr. Mike&apos;s Grill have over 40 years of restaurant experience.
+              Starting their life together in Alabama, Sammy and Hiyam moved to California and
+              then back to Michigan in 1996, Hiyam&apos;s home state.
+            </p>
+            <p className="text-foreground-muted text-lg leading-relaxed">
+              Over the years, they have developed a great passion for food and creating a
+              fantastic customer experience. In 2014, they bought Mr. Mike&apos;s Grill,
+              bringing their daughters, Angie and Tanya, on board to continue the long
+              tradition of excellent customer service and a diner that truly has a hometown
+              family feel.
+            </p>
+            <p className="text-foreground text-lg leading-relaxed font-medium italic border-l-2 border-accent pl-6">
+              &ldquo;Family and commitment to their customers are truly the most important
+              aspects of Mr. Mike&apos;s Grill!&rdquo;
+            </p>
 
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="font-satoshi text-[clamp(0.875rem,1.6vw,1.05rem)] leading-[1.8] text-muted"
-            >
-              I&apos;m Kenzy — a brand and graphic designer who operates at the
-              intersection of strategy and aesthetics. I don&apos;t just design logos
-              or pick color palettes. I architect complete visual ecosystems that
-              position brands as category leaders.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.45 }}
-              className="mt-5 font-satoshi text-[clamp(0.875rem,1.6vw,1.05rem)] leading-[1.8] text-muted sm:mt-6"
-            >
-              My work spans global campaigns, premium brand identities, and
-              creative direction for clients who refuse to blend in. Every
-              decision — from typography to texture — is intentional, strategic,
-              and designed to provoke an emotional response.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.6 }}
-              className="mt-5 font-satoshi text-[clamp(0.875rem,1.6vw,1.05rem)] leading-[1.8] text-muted sm:mt-6"
-            >
-              The result? Brands that don&apos;t just exist — they dominate
-              perception, command premium pricing, and become unforgettable.
-            </motion.p>
-          </div>
+            {/* Features */}
+            <div className="grid grid-cols-2 gap-4 pt-4">
+              {[
+                "Family Owned",
+                "Cooked to Order",
+                "Largest GF Menu",
+                "Fresh Ingredients",
+              ].map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-accent" />
+                  <span className="text-foreground-muted text-sm">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.8 }}
-          className="mt-16 grid grid-cols-2 gap-6 border-t border-border pt-10 sm:mt-20 sm:gap-8 sm:pt-12 md:grid-cols-4"
-        >
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 16 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.9 + i * 0.08 }}
-            >
-              <span className="font-clash text-[clamp(2rem,4vw,3rem)] font-semibold text-accent">
-                {stat.value}
-              </span>
-              <p className="mt-1 font-satoshi text-xs text-muted sm:text-sm">{stat.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

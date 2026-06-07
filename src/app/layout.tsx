@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,23 +7,30 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 export const metadata: Metadata = {
-  title: "Kenzy — Brand & Graphic Designer",
+  title: "Mr. Mike's Grill | Proudly Serving Westland, MI",
   description:
-    "Kenzy is an elite brand and graphic designer specializing in high-end visual identities, creative direction, and brand strategy that transforms businesses into unforgettable experiences.",
+    "Homestyle cooked dishes with the freshest ingredients. Breakfast, Lunch, Dinner, and the area's largest Gluten Free menu. Family-owned since 2014.",
   keywords: [
-    "brand designer",
-    "graphic designer",
-    "creative director",
-    "brand identity",
-    "visual design",
-    "luxury branding",
-    "Kenzy",
+    "Mr Mike's Grill",
+    "Westland MI restaurant",
+    "gluten free restaurant",
+    "family restaurant",
+    "breakfast",
+    "lunch",
+    "dinner",
+    "homestyle cooking",
   ],
   openGraph: {
-    title: "Kenzy — Brand & Graphic Designer",
+    title: "Mr. Mike's Grill | Proudly Serving Westland, MI",
     description:
-      "Designing brands people remember. High-end brand identity, creative direction, and visual systems.",
+      "Homestyle cooked dishes with the freshest ingredients. Family-owned since 2014. The area's largest Gluten Free menu.",
     type: "website",
   },
 };
@@ -34,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="noise">{children}</body>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body>{children}</body>
     </html>
   );
 }

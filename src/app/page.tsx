@@ -1,24 +1,28 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import SelectedWork from "@/components/SelectedWork";
 import About from "@/components/About";
-import Services from "@/components/Services";
+import FanFavorites from "@/components/FanFavorites";
+import GlutenFree from "@/components/GlutenFree";
+import Menu from "@/components/Menu";
+import OrderCTA from "@/components/OrderCTA";
 import Testimonials from "@/components/Testimonials";
+import Reservations from "@/components/Reservations";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Navbar />
       <main>
         <Hero />
-        <SelectedWork />
         <About />
-        <Services />
+        <FanFavorites />
+        <GlutenFree />
+        <Menu />
+        <OrderCTA />
         <Testimonials />
+        <Reservations />
         <Contact />
       </main>
       <Footer />
