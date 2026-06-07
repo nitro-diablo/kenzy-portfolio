@@ -269,14 +269,14 @@ export default function Menu() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
           <p className="section-label">Our Menu</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mt-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mt-2">
             Breakfast, Lunch &{" "}
             <span className="text-accent">Dinner</span>
           </h2>
-          <p className="text-foreground-muted text-lg mt-4 max-w-2xl mx-auto">
+          <p className="text-foreground-muted text-base sm:text-lg mt-4 max-w-2xl mx-auto px-2 sm:px-0">
             Fresh, homestyle cooked dishes with the freshest ingredients, cooked to order.
             Menu and item availability subject to change.
           </p>
@@ -287,13 +287,13 @@ export default function Menu() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2 sm:px-0"
         >
           {menuData.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full text-sm font-medium tracking-wide uppercase transition-all duration-300 ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium tracking-wide uppercase transition-all duration-300 min-h-[44px] flex items-center ${
                 activeCategory === category.id
                   ? "bg-accent text-background shadow-lg shadow-accent/20"
                   : "glass text-foreground-muted hover:text-accent hover:border-accent/30"
@@ -318,14 +318,14 @@ export default function Menu() {
         )}
 
         {/* Menu Grid */}
-        <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
           {currentMenu?.items.map((item, index) => (
             <motion.div
               key={item.name}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05, duration: 0.4 }}
-              className="group p-6 rounded-xl border border-border hover:border-accent/30 bg-card hover:bg-card-hover transition-all duration-300"
+              className="group p-4 sm:p-6 rounded-xl border border-border hover:border-accent/30 bg-card hover:bg-card-hover transition-all duration-300"
             >
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">

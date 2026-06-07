@@ -14,10 +14,10 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <p className="section-label">Find Us</p>
-          <h2 className="text-4xl md:text-5xl font-[var(--font-playfair)] font-bold mt-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-[var(--font-playfair)] font-bold mt-2">
             Visit <span className="text-accent">Mr. Mike&apos;s</span>
           </h2>
         </motion.div>
@@ -28,7 +28,7 @@ export default function Contact() {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative rounded-xl overflow-hidden border border-border h-[400px] lg:h-full min-h-[400px]"
+            className="relative rounded-xl overflow-hidden border border-border h-[280px] sm:h-[400px] lg:h-full lg:min-h-[400px]"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.8!2d-83.39!3d42.33!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDE5JzQ4LjAiTiA4M8KwMjMnMjQuMCJX!5e0!3m2!1sen!2sus!4v1234567890"
@@ -51,7 +51,7 @@ export default function Contact() {
             className="space-y-6"
           >
             {/* Address Card */}
-            <div className="glass rounded-xl p-6 space-y-4">
+            <div className="glass rounded-xl p-4 sm:p-6 space-y-4">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
                   <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -76,7 +76,7 @@ export default function Contact() {
             </div>
 
             {/* Phone Card */}
-            <div className="glass rounded-xl p-6">
+            <div className="glass rounded-xl p-4 sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
                   <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -97,7 +97,7 @@ export default function Contact() {
             </div>
 
             {/* Services Card */}
-            <div className="glass rounded-xl p-6">
+            <div className="glass rounded-xl p-4 sm:p-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
                   <svg className="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

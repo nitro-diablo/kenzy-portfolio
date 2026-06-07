@@ -1,24 +1,16 @@
 "use client";
 
+import Logo from "./Logo";
+
 export default function Footer() {
   return (
     <footer className="bg-background-light border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center">
-                <span className="text-background font-bold text-lg font-[var(--font-playfair)]">M</span>
-              </div>
-              <div>
-                <p className="text-foreground font-[var(--font-playfair)] text-lg font-semibold leading-tight">
-                  Mr. Mike&apos;s
-                </p>
-                <p className="text-accent text-xs tracking-widest uppercase">Grill</p>
-              </div>
-            </div>
-            <p className="text-foreground-muted text-sm leading-relaxed">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Logo size="md" showText className="mb-4" />
+            <p className="text-foreground-muted text-sm leading-relaxed max-w-xs">
               Family-owned since 2014. Serving homestyle cooked dishes with the freshest
               ingredients in Westland, MI.
             </p>
@@ -71,19 +63,19 @@ export default function Footer() {
               Hours
             </h4>
             <ul className="space-y-2 text-foreground-muted text-sm">
-              <li className="flex justify-between">
+              <li className="flex justify-between gap-4">
                 <span>Mon</span>
-                <span className="text-warm-red">Closed</span>
+                <span className="text-warm-red font-medium">Closed</span>
               </li>
-              <li className="flex justify-between">
+              <li className="flex justify-between gap-4">
                 <span>Tue</span>
                 <span>8am – 3pm</span>
               </li>
-              <li className="flex justify-between">
+              <li className="flex justify-between gap-4">
                 <span>Wed – Sat</span>
                 <span>8am – 8pm</span>
               </li>
-              <li className="flex justify-between">
+              <li className="flex justify-between gap-4">
                 <span>Sun</span>
                 <span>8am – 3pm</span>
               </li>
@@ -92,22 +84,16 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
           <p className="text-foreground-muted text-xs">
             © {new Date().getFullYear()} Mr. Mike&apos;s Grill. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <span className="text-foreground-muted text-xs">
-              Free Wi-Fi Available
-            </span>
-            <span className="text-border">|</span>
-            <span className="text-foreground-muted text-xs">
-              Carry Out Available
-            </span>
-            <span className="text-border">|</span>
-            <span className="text-foreground-muted text-xs">
-              Catering Services
-            </span>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <span className="text-foreground-muted text-xs">Free Wi-Fi</span>
+            <span className="text-border hidden sm:inline">|</span>
+            <span className="text-foreground-muted text-xs">Carry Out</span>
+            <span className="text-border hidden sm:inline">|</span>
+            <span className="text-foreground-muted text-xs">Catering</span>
           </div>
         </div>
       </div>

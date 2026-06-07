@@ -14,7 +14,7 @@ export default function GlutenFree() {
       <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-accent/5 blur-3xl" />
 
       <div className="max-w-7xl mx-auto relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -23,7 +23,7 @@ export default function GlutenFree() {
             className="space-y-6"
           >
             <p className="section-label">Celiac Friendly</p>
-            <h2 className="text-4xl md:text-5xl font-[var(--font-playfair)] font-bold leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-[var(--font-playfair)] font-bold leading-tight">
               The Area&apos;s Largest{" "}
               <span className="text-accent">Gluten Free</span> Menu
             </h2>
@@ -61,7 +61,7 @@ export default function GlutenFree() {
               ))}
             </div>
 
-            <a href="#menu" className="btn-primary inline-flex mt-4">
+            <a href="#menu" className="btn-primary inline-flex mt-4 w-full sm:w-auto">
               View GF Menu
             </a>
           </motion.div>
@@ -75,7 +75,7 @@ export default function GlutenFree() {
           >
             <div className="relative rounded-xl overflow-hidden">
               <div
-                className="aspect-square bg-cover bg-center"
+                className="aspect-[4/3] lg:aspect-square bg-cover bg-center"
                 style={{
                   backgroundImage:
                     "url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80')",

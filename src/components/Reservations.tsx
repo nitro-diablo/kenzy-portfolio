@@ -29,11 +29,11 @@ export default function Reservations() {
           className="space-y-6"
         >
           <p className="section-label">Reservations</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold leading-tight">
             Book Your{" "}
             <span className="text-accent">Table</span>
           </h2>
-          <p className="text-foreground-muted text-lg max-w-xl mx-auto">
+          <p className="text-foreground-muted text-base sm:text-lg max-w-xl mx-auto px-2 sm:px-0">
             Call ahead to reserve your table or inquire about our catering options
             for your next meeting, event, or gathering.
           </p>
@@ -43,7 +43,7 @@ export default function Reservations() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-12 glass rounded-2xl p-8 md:p-12 warm-glow"
+          className="mt-8 sm:mt-12 glass rounded-2xl p-5 sm:p-8 md:p-12 warm-glow"
         >
           <div className="grid md:grid-cols-2 gap-8">
             {/* Hours */}

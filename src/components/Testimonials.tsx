@@ -41,23 +41,23 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <p className="section-label">Testimonials</p>
-          <h2 className="text-4xl md:text-5xl font-[var(--font-playfair)] font-bold mt-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-[var(--font-playfair)] font-bold mt-2">
             What People Are{" "}
             <span className="text-accent">Saying</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group p-8 rounded-xl border border-border hover:border-accent/30 bg-card transition-all duration-300"
+              className="group p-5 sm:p-8 rounded-xl border border-border hover:border-accent/30 bg-card transition-all duration-300"
             >
               {/* Stars */}
               <div className="flex gap-1 mb-4">

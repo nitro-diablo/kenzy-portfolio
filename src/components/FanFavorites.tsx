@@ -41,22 +41,22 @@ export default function FanFavorites() {
           className="text-center mb-16"
         >
           <p className="section-label">Most Popular</p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mt-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold mt-2">
             Fan <span className="text-accent">Favorites</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {favorites.map((item, index) => (
             <motion.div
               key={item.name}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative overflow-hidden rounded-xl border border-border hover:border-accent/30 transition-all duration-500"
+              className="group relative overflow-hidden rounded-xl border border-border hover:border-accent/30 transition-all duration-500 will-change-transform"
             >
               {/* Image */}
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                   style={{ backgroundImage: `url('${item.image}')` }}
@@ -70,7 +70,7 @@ export default function FanFavorites() {
               </div>
 
               {/* Content */}
-              <div className="p-6 bg-card">
+              <div className="p-4 sm:p-6 bg-card">
                 <h3 className="text-xl font-[var(--font-playfair)] font-semibold text-foreground group-hover:text-accent transition-colors">
                   {item.name}
                 </h3>
