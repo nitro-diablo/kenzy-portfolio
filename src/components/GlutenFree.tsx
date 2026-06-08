@@ -3,92 +3,88 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
+const safetyFeatures = [
+  "Two separate dedicated fryers",
+  "Separate utensils & toaster",
+  "Dedicated preparation area",
+  "Separate cooking space",
+  "Zero cross contamination",
+];
+
 export default function GlutenFree() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="section-padding bg-background-light relative overflow-hidden" ref={ref}>
-      {/* Background accent */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.03] blur-[100px]" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-accent/[0.03] blur-[80px]" />
+    <section className="relative overflow-hidden" ref={ref}>
+      {/* Full-bleed background image on right side */}
+      <div className="absolute top-0 right-0 bottom-0 w-full lg:w-1/2 z-0">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background/30 lg:from-background lg:via-background/50 lg:to-transparent" />
+        <div className="absolute inset-0 bg-background/40 lg:bg-transparent" />
+      </div>
 
-      <div className="max-w-7xl mx-auto relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Content */}
+      <div className="relative z-10 max-w-[1300px] mx-auto">
+        <div className="grid lg:grid-cols-2">
+          {/* Left content — with padding */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="space-y-6"
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="py-16 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 lg:pr-20"
           >
-            <p className="section-label">Celiac Friendly</p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[var(--font-playfair)] font-bold leading-[1.12]">
+            <span className="section-label">Celiac Friendly</span>
+            <div className="accent-line-long mt-4 mb-6" />
+            <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3rem] mb-6">
               The Area&apos;s Largest{" "}
               <span className="text-accent">Gluten Free</span> Menu
             </h2>
-            <div className="divider" />
-            <p className="text-foreground-muted text-[15px] sm:text-base leading-[1.8]">
+
+            <p className="text-foreground-muted text-[15px] sm:text-base leading-[1.85] mb-4">
               Aside from our regular menu, Mr. Mike&apos;s Grill offers the area&apos;s largest
               Gluten Free menu, prepared safely and deliciously for all gluten free patrons.
             </p>
-            <p className="text-foreground-muted text-[15px] sm:text-base leading-[1.8]">
+            <p className="text-foreground-muted text-[15px] sm:text-base leading-[1.85] mb-8">
               With one of the owners having Celiac Disease, the family takes pride in the needs
               of gluten free and has created a positive staff culture around it.
             </p>
 
-            {/* Safety Features */}
-            <div className="grid gap-3.5 pt-4">
-              {[
-                "Two separate dedicated fryers",
-                "Separate utensils & toaster",
-                "Dedicated preparation area",
-                "Separate cooking space",
-                "Zero cross contamination",
-              ].map((feature, i) => (
+            {/* Safety list */}
+            <div className="space-y-3 mb-10">
+              {safetyFeatures.map((feature, i) => (
                 <motion.div
                   key={feature}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
-                  className="flex items-center gap-3.5"
+                  transition={{ delay: 0.3 + i * 0.07, duration: 0.5 }}
+                  className="flex items-center gap-3"
                 >
-                  <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 border border-accent/20">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  </div>
-                  <span className="text-foreground text-sm font-medium">{feature}</span>
+                  <span className="w-6 h-px bg-accent/50" />
+                  <span className="text-foreground text-sm font-medium tracking-wide">{feature}</span>
                 </motion.div>
               ))}
             </div>
 
-            <a href="#menu" className="btn-primary inline-flex mt-6 w-full sm:w-auto">
-              View GF Menu
-            </a>
+            {/* Stats + CTA */}
+            <div className="flex items-center gap-6 mb-8">
+              <div className="border border-accent/20 px-5 py-4 bg-accent/[0.04]">
+                <p className="text-accent font-[var(--font-playfair)] text-3xl font-bold leading-none">100%</p>
+                <p className="text-foreground-muted text-[9px] mt-1.5 tracking-[0.25em] uppercase">Certified GF</p>
+              </div>
+              <a href="#menu" className="btn-primary">
+                View GF Menu
+              </a>
+            </div>
           </motion.div>
 
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div className="relative rounded-sm overflow-hidden">
-              <div
-                className="aspect-[4/3] lg:aspect-square bg-cover bg-center"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80')",
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
-            </div>
-            {/* Overlay card */}
-            <div className="absolute -bottom-4 left-4 sm:-bottom-5 sm:left-6 glass rounded-lg p-5 warm-glow">
-              <p className="text-accent font-bold text-2xl font-[var(--font-playfair)]">100%</p>
-              <p className="text-foreground-muted text-[11px] mt-1.5 tracking-wide uppercase">Safe & Certified GF</p>
-            </div>
-          </motion.div>
+          {/* Right side is the background image — empty on desktop */}
+          <div className="hidden lg:block" />
         </div>
       </div>
     </section>
