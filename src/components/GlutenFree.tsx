@@ -29,9 +29,9 @@ export default function GlutenFree() {
 
       <div className="relative z-10 max-w-[1300px] mx-auto">
         <div className="grid lg:grid-cols-2">
-          <div className="reveal-left py-16 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 lg:pr-20">
+          <div className="reveal-left py-16 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 lg:pr-20 text-center lg:text-left">
             <span className="section-label">Celiac Friendly</span>
-            <div className="accent-line-long mt-4 mb-6" />
+            <div className="accent-line mx-auto lg:mx-0 mt-4 mb-6" />
             <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3rem] mb-6">
               The Area&apos;s Largest{" "}
               <span className="text-accent">Gluten Free</span> Menu

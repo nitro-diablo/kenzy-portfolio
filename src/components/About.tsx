@@ -12,9 +12,9 @@ export default function About() {
       </div>
 
       <div className="max-w-[1300px] mx-auto">
-        <div className="reveal mb-14 sm:mb-20 max-w-2xl">
+        <div className="reveal mb-14 sm:mb-20 text-center">
           <span className="section-label">Our Story</span>
-          <div className="accent-line-long mt-4 mb-6" />
+          <div className="accent-line mx-auto mt-4 mb-6" />
           <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3.25rem]">
             A Family Tradition of{" "}
             <span className="text-accent">Excellent Food</span>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useReveal } from "./useReveal";
 
 interface MenuItem {
@@ -115,79 +114,59 @@ export default function Menu() {
             >
               {category.name}
               {activeCategory === category.id && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent" />
               )}
             </button>
           ))}
         </div>
 
         {/* GF Notice */}
-        <AnimatePresence mode="wait">
-          {activeCategory === "gluten-free" && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="overflow-hidden mb-8"
+        {activeCategory === "gluten-free" && (
+          <div className="mb-8">
+            <div className="border border-accent/20 bg-accent/[0.04] p-4 text-center">
+              <p className="text-accent font-medium text-xs tracking-wider">
+                Dedicated GF fryers, utensils, toaster, prep area & cooking space — zero cross contamination
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Menu items — no Framer Motion, pure CSS */}
+        <div className="divide-y divide-border/30">
+          {currentMenu?.items.map((item) => (
+            <div
+              key={item.name}
+              className="group py-5 sm:py-6 flex gap-4 items-start hover:bg-accent/[0.02] transition-colors duration-300 -mx-4 px-4"
             >
-              <div className="border border-accent/20 bg-accent/[0.04] p-4 text-center">
-                <p className="text-accent font-medium text-xs tracking-wider">
-                  Dedicated GF fryers, utensils, toaster, prep area & cooking space — zero cross contamination
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <h3 className="text-foreground font-semibold text-[15px] sm:text-base group-hover:text-accent transition-colors duration-300">
+                    {item.name}
+                  </h3>
+                  {item.tag && (
+                    <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-accent bg-accent/10 px-2 py-0.5">
+                      {item.tag}
+                    </span>
+                  )}
+                  {item.gf && !item.tag && (
+                    <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-green-400 bg-green-900/20 px-2 py-0.5">
+                      GF
+                    </span>
+                  )}
+                </div>
+                <p className="text-foreground-muted text-xs sm:text-sm mt-1.5 leading-relaxed pr-4">
+                  {item.description}
                 </p>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Menu items */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="divide-y divide-border/30"
-          >
-            {currentMenu?.items.map((item) => (
-              <div
-                key={item.name}
-                className="group py-5 sm:py-6 flex gap-4 items-start hover:bg-accent/[0.02] transition-colors duration-300 -mx-4 px-4"
-              >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2.5 flex-wrap">
-                    <h3 className="text-foreground font-semibold text-[15px] sm:text-base group-hover:text-accent transition-colors duration-300">
-                      {item.name}
-                    </h3>
-                    {item.tag && (
-                      <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-accent bg-accent/10 px-2 py-0.5">
-                        {item.tag}
-                      </span>
-                    )}
-                    {item.gf && !item.tag && (
-                      <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-green-400 bg-green-900/20 px-2 py-0.5">
-                        GF
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-foreground-muted text-xs sm:text-sm mt-1.5 leading-relaxed pr-4">
-                    {item.description}
-                  </p>
-                </div>
-                <div className="flex items-center gap-3 pt-0.5 flex-shrink-0">
-                  <span className="hidden sm:block w-8 h-px bg-border-light" />
-                  <span className="text-accent font-[var(--font-playfair)] text-lg font-semibold">
-                    ${item.price}
-                  </span>
-                </div>
+              <div className="flex items-center gap-3 pt-0.5 flex-shrink-0">
+                <span className="hidden sm:block w-8 h-px bg-border-light" />
+                <span className="text-accent font-[var(--font-playfair)] text-lg font-semibold">
+                  ${item.price}
+                </span>
               </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+            </div>
+          ))}
+        </div>
 
         <div className="reveal mt-12 sm:mt-16 text-center space-y-6" style={{ transitionDelay: "0.2s" }}>
           <p className="text-foreground-muted text-[11px] uppercase tracking-[0.15em]">

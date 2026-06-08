@@ -39,9 +39,9 @@ export default function FanFavorites() {
       </div>
 
       <div className="max-w-[1300px] mx-auto">
-        <div className="reveal mb-14 sm:mb-20 lg:text-right lg:ml-auto lg:max-w-2xl">
+        <div className="reveal mb-14 sm:mb-20 text-center">
           <span className="section-label">Most Popular</span>
-          <div className="accent-line-long mt-4 mb-6 lg:ml-auto" />
+          <div className="accent-line mx-auto mt-4 mb-6" />
           <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3.25rem]">
             Fan <span className="text-accent">Favorites</span>
           </h2>
