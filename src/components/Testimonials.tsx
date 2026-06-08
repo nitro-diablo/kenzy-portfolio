@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useReveal } from "./useReveal";
 
 const testimonials = [
   {
@@ -27,46 +26,34 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useReveal();
 
   return (
-    <section className="section-padding relative" ref={ref}>
+    <section className="section-padding relative" ref={ref as React.RefObject<HTMLElement>}>
       <div className="max-w-[1300px] mx-auto">
-        {/* Header — left-aligned */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-14 sm:mb-20 max-w-2xl"
-        >
+        <div className="reveal mb-14 sm:mb-20 max-w-2xl">
           <span className="section-label">Testimonials</span>
           <div className="accent-line-long mt-4 mb-6" />
           <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3.25rem]">
             What People Are{" "}
             <span className="text-accent">Saying</span>
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Testimonial grid — 2 columns, staggered */}
         <div className="grid md:grid-cols-2 gap-5 sm:gap-6">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <div
               key={testimonial.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className={`group relative p-6 sm:p-8 border border-border/30 hover:border-accent/15 bg-card/50 transition-all duration-500 ${
+              className={`reveal group relative p-6 sm:p-8 border border-border/30 hover:border-accent/15 bg-card/50 transition-all duration-500 ${
                 index % 2 === 1 ? "md:mt-8" : ""
               }`}
+              style={{ transitionDelay: `${index * 0.1}s` }}
             >
-              {/* Large quote mark */}
               <div className="text-accent/10 font-[var(--font-playfair)] text-[80px] leading-none absolute top-2 left-5 select-none">
                 &ldquo;
               </div>
 
               <div className="relative z-10">
-                {/* Stars */}
                 <div className="flex gap-0.5 mb-5">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <svg key={star} className="w-3 h-3 text-accent" fill="currentColor" viewBox="0 0 20 20">
@@ -91,7 +78,7 @@ export default function Testimonials() {
                   Google Review
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

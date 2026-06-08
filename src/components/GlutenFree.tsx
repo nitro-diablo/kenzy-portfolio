@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useReveal } from "./useReveal";
 
 const safetyFeatures = [
   "Two separate dedicated fryers",
@@ -12,12 +11,10 @@ const safetyFeatures = [
 ];
 
 export default function GlutenFree() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useReveal();
 
   return (
-    <section className="relative overflow-hidden" ref={ref}>
-      {/* Full-bleed background image on right side */}
+    <section className="relative overflow-hidden" ref={ref as React.RefObject<HTMLElement>}>
       <div className="absolute top-0 right-0 bottom-0 w-full lg:w-1/2 z-0">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -32,13 +29,7 @@ export default function GlutenFree() {
 
       <div className="relative z-10 max-w-[1300px] mx-auto">
         <div className="grid lg:grid-cols-2">
-          {/* Left content — with padding */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="py-16 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 lg:pr-20"
-          >
+          <div className="reveal-left py-16 sm:py-24 lg:py-32 px-5 sm:px-8 lg:px-12 lg:pr-20">
             <span className="section-label">Celiac Friendly</span>
             <div className="accent-line-long mt-4 mb-6" />
             <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3rem] mb-6">
@@ -55,23 +46,15 @@ export default function GlutenFree() {
               of gluten free and has created a positive staff culture around it.
             </p>
 
-            {/* Safety list */}
             <div className="space-y-3 mb-10">
-              {safetyFeatures.map((feature, i) => (
-                <motion.div
-                  key={feature}
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.07, duration: 0.5 }}
-                  className="flex items-center gap-3"
-                >
+              {safetyFeatures.map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
                   <span className="w-6 h-px bg-accent/50" />
                   <span className="text-foreground text-sm font-medium tracking-wide">{feature}</span>
-                </motion.div>
+                </div>
               ))}
             </div>
 
-            {/* Stats + CTA */}
             <div className="flex items-center gap-6 mb-8">
               <div className="border border-accent/20 px-5 py-4 bg-accent/[0.04]">
                 <p className="text-accent font-[var(--font-playfair)] text-3xl font-bold leading-none">100%</p>
@@ -81,9 +64,8 @@ export default function GlutenFree() {
                 View GF Menu
               </a>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right side is the background image — empty on desktop */}
           <div className="hidden lg:block" />
         </div>
       </div>

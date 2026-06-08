@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useReveal } from "./useReveal";
 
 interface MenuItem {
   name: string;
@@ -78,26 +79,17 @@ const menuData: MenuCategory[] = [
 
 export default function Menu() {
   const [activeCategory, setActiveCategory] = useState("breakfast");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-
+  const ref = useReveal();
   const currentMenu = menuData.find((cat) => cat.id === activeCategory);
 
   return (
-    <section id="menu" className="section-padding bg-background-light relative" ref={ref}>
-      {/* Decorative */}
+    <section id="menu" className="section-padding bg-background-light relative" ref={ref as React.RefObject<HTMLElement>}>
       <div className="absolute top-12 right-8 sm:right-16 text-[120px] sm:text-[200px] font-[var(--font-playfair)] font-bold text-accent/[0.03] leading-none select-none hidden md:block">
         03
       </div>
 
       <div className="max-w-[1100px] mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-10 sm:mb-14"
-        >
+        <div className="reveal text-center mb-10 sm:mb-14">
           <span className="section-label">Our Menu</span>
           <div className="accent-line mx-auto mt-4 mb-6" />
           <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3.25rem]">
@@ -107,15 +99,10 @@ export default function Menu() {
           <p className="text-foreground-muted text-sm sm:text-base mt-4 max-w-md mx-auto leading-relaxed">
             Fresh, homestyle cooked dishes with the freshest ingredients, cooked to order.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Tabs — underline style */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex justify-center gap-1 sm:gap-2 mb-10 sm:mb-14 border-b border-border/40 pb-px"
-        >
+        {/* Tabs */}
+        <div className="reveal flex justify-center gap-1 sm:gap-2 mb-10 sm:mb-14 border-b border-border/40 pb-px" style={{ transitionDelay: "0.1s" }}>
           {menuData.map((category) => (
             <button
               key={category.id}
@@ -136,7 +123,7 @@ export default function Menu() {
               )}
             </button>
           ))}
-        </motion.div>
+        </div>
 
         {/* GF Notice */}
         <AnimatePresence mode="wait">
@@ -156,7 +143,7 @@ export default function Menu() {
           )}
         </AnimatePresence>
 
-        {/* Menu items — clean list layout */}
+        {/* Menu items */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -166,12 +153,9 @@ export default function Menu() {
             transition={{ duration: 0.3 }}
             className="divide-y divide-border/30"
           >
-            {currentMenu?.items.map((item, index) => (
-              <motion.div
+            {currentMenu?.items.map((item) => (
+              <div
                 key={item.name}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.04, duration: 0.4 }}
                 className="group py-5 sm:py-6 flex gap-4 items-start hover:bg-accent/[0.02] transition-colors duration-300 -mx-4 px-4"
               >
                 <div className="flex-1 min-w-0">
@@ -194,25 +178,18 @@ export default function Menu() {
                     {item.description}
                   </p>
                 </div>
-                {/* Price — separated by dots */}
                 <div className="flex items-center gap-3 pt-0.5 flex-shrink-0">
                   <span className="hidden sm:block w-8 h-px bg-border-light" />
                   <span className="text-accent font-[var(--font-playfair)] text-lg font-semibold">
                     ${item.price}
                   </span>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom note + CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-12 sm:mt-16 text-center space-y-6"
-        >
+        <div className="reveal mt-12 sm:mt-16 text-center space-y-6" style={{ transitionDelay: "0.2s" }}>
           <p className="text-foreground-muted text-[11px] uppercase tracking-[0.15em]">
             Carry out pricing may differ · Larger orders may be subject to automatic gratuity
           </p>
@@ -221,7 +198,7 @@ export default function Menu() {
               Call to Order — (734) 729-6453
             </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,37 +1,23 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useReveal } from "./useReveal";
 
 export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useReveal();
 
   return (
-    <section id="contact" className="section-padding relative" ref={ref}>
+    <section id="contact" className="section-padding relative" ref={ref as React.RefObject<HTMLElement>}>
       <div className="max-w-[1300px] mx-auto">
-        {/* Header — right-aligned for visual rhythm */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-14 sm:mb-16 lg:text-right lg:ml-auto lg:max-w-2xl"
-        >
+        <div className="reveal mb-14 sm:mb-16 lg:text-right lg:ml-auto lg:max-w-2xl">
           <span className="section-label">Find Us</span>
           <div className="accent-line-long mt-4 mb-6 lg:ml-auto" />
           <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3.25rem]">
             Visit <span className="text-accent">Mr. Mike&apos;s</span>
           </h2>
-        </motion.div>
+        </div>
 
         <div className="grid lg:grid-cols-12 gap-6 lg:gap-8">
-          {/* Map — 7 columns */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-7 relative overflow-hidden h-[280px] sm:h-[360px] lg:h-full lg:min-h-[440px] border border-border/20"
-          >
+          <div className="reveal-left lg:col-span-7 relative overflow-hidden h-[280px] sm:h-[360px] lg:h-full lg:min-h-[440px] border border-border/20">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2950.8!2d-83.39!3d42.33!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDE5JzQ4LjAiTiA4M8KwMjMnMjQuMCJX!5e0!3m2!1sen!2sus!4v1234567890"
               width="100%"
@@ -43,16 +29,9 @@ export default function Contact() {
               title="Mr. Mike's Grill Location"
               className="grayscale hover:grayscale-0 transition-all duration-700"
             />
-          </motion.div>
+          </div>
 
-          {/* Info cards — 5 columns */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-5 space-y-4"
-          >
-            {/* Address */}
+          <div className="reveal-right lg:col-span-5 space-y-4" style={{ transitionDelay: "0.1s" }}>
             <div className="border border-border/20 p-5 sm:p-6 hover:border-accent/15 transition-colors duration-500">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full border border-accent/15 flex items-center justify-center flex-shrink-0 bg-accent/[0.04]">
@@ -77,7 +56,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Phone */}
             <div className="border border-border/20 p-5 sm:p-6 hover:border-accent/15 transition-colors duration-500">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full border border-accent/15 flex items-center justify-center flex-shrink-0 bg-accent/[0.04]">
@@ -98,7 +76,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Services */}
             <div className="border border-border/20 p-5 sm:p-6 hover:border-accent/15 transition-colors duration-500">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 rounded-full border border-accent/15 flex items-center justify-center flex-shrink-0 bg-accent/[0.04]">
@@ -122,7 +99,6 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Quick actions */}
             <div className="flex gap-3 pt-1">
               <a href="tel:+17347296453" className="btn-primary flex-1 justify-center">
                 Call to Order
@@ -136,7 +112,7 @@ export default function Contact() {
                 Directions
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

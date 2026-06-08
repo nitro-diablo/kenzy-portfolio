@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Logo from "./Logo";
 
 export default function Hero() {
@@ -26,22 +25,13 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 sm:px-10 w-full">
         <div className="flex flex-col items-center text-center pt-28 sm:pt-32 pb-16">
-          {/* Logo — large, glowing hero anchor */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          >
+          {/* Logo */}
+          <div className="anim-scale-in">
             <Logo size="hero" glow className="mb-6 sm:mb-8" />
-          </motion.div>
+          </div>
 
           {/* Location tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex items-center gap-3 mb-8 sm:mb-10"
-          >
+          <div className="anim-fade-up delay-2 flex items-center gap-3 mb-8 sm:mb-10">
             <span className="accent-line" />
             <span className="text-accent/80 text-[10px] sm:text-[11px] font-semibold tracking-[0.4em] uppercase">
               Westland, MI
@@ -51,52 +41,32 @@ export default function Hero() {
               Est. 2014
             </span>
             <span className="accent-line" />
-          </motion.div>
+          </div>
 
           {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="heading-xl text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-4xl"
-          >
+          <h1 className="anim-fade-up delay-3 heading-xl text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-4xl">
             Fresh, Homestyle{" "}
             <span className="text-gradient">Cooking</span>
-          </motion.h1>
+          </h1>
 
           {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="text-foreground-muted text-sm sm:text-base lg:text-lg max-w-lg mx-auto mt-6 sm:mt-8 leading-[1.8]"
-          >
+          <p className="anim-fade-up delay-4 text-foreground-muted text-sm sm:text-base lg:text-lg max-w-lg mx-auto mt-6 sm:mt-8 leading-[1.8]">
             From hearty breakfasts to prime rib dinners — fresh ingredients,
             cooked to order. Featuring the area&apos;s largest certified Gluten Free menu.
-          </motion.p>
+          </p>
 
           {/* CTA row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.7 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-10 sm:mt-12 w-full sm:w-auto px-2 sm:px-0"
-          >
+          <div className="anim-fade-up delay-5 flex flex-col sm:flex-row gap-3 sm:gap-4 mt-10 sm:mt-12 w-full sm:w-auto px-2 sm:px-0">
             <a href="#menu" className="btn-primary sm:!px-10">
               View Our Menu
             </a>
             <a href="tel:+17347296453" className="btn-outline sm:!px-10">
               Order Now — (734) 729-6453
             </a>
-          </motion.div>
+          </div>
 
           {/* Status bar */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="mt-16 sm:mt-20 flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-xs tracking-wider"
-          >
+          <div className="anim-fade-in delay-7 mt-16 sm:mt-20 flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-xs tracking-wider">
             <div className="flex items-center gap-2">
               <div className="w-[6px] h-[6px] rounded-full bg-green-400 animate-pulse" />
               <span className="text-foreground-muted">Open Today: 8am – 8pm</span>
@@ -109,7 +79,7 @@ export default function Hero() {
               <span className="text-accent/30">·</span>
               <span>Catering</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 

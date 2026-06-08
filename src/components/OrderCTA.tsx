@@ -1,16 +1,13 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import Logo from "./Logo";
+import { useReveal } from "./useReveal";
 
 export default function OrderCTA() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useReveal();
 
   return (
-    <section className="relative overflow-hidden" ref={ref}>
-      {/* Full background image */}
+    <section className="relative overflow-hidden" ref={ref as React.RefObject<HTMLElement>}>
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed"
@@ -23,12 +20,7 @@ export default function OrderCTA() {
       </div>
 
       <div className="relative z-10 py-24 sm:py-32 lg:py-40 px-5 sm:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl mx-auto text-center"
-        >
+        <div className="reveal max-w-2xl mx-auto text-center">
           <Logo size="lg" glow className="mx-auto mb-8" />
 
           <span className="section-label">Ready to Eat?</span>
@@ -59,7 +51,6 @@ export default function OrderCTA() {
             </a>
           </div>
 
-          {/* Trust badges */}
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-foreground-muted text-[10px] tracking-[0.2em] uppercase">
             <span className="flex items-center gap-2">
               <span className="w-1 h-1 rounded-full bg-green-400" />
@@ -74,7 +65,7 @@ export default function OrderCTA() {
               Largest GF Menu
             </span>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

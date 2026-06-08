@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Logo from "./Logo";
 
 const navLinks = [
@@ -29,29 +29,23 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+      <nav
+        className={`anim-fade-down fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           scrolled
             ? "bg-background/95 backdrop-blur-2xl border-b border-accent/10 shadow-2xl shadow-black/30"
             : "bg-transparent"
         }`}
       >
-        {/* Thin accent strip at very top */}
         <div className="h-[1px] bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
 
         <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12">
           <div className="flex items-center justify-between h-[72px] sm:h-[80px]">
-            {/* Logo */}
             <a href="#home" className="flex-shrink-0 group">
               <div className="transition-transform duration-500 group-hover:scale-105">
                 <Logo size="md" />
               </div>
             </a>
 
-            {/* Desktop Nav — centered */}
             <div className="hidden lg:flex items-center gap-12">
               {navLinks.map((link) => (
                 <a
@@ -65,7 +59,6 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right side: CTA + Hamburger */}
             <div className="flex items-center gap-5">
               <a
                 href="tel:+17347296453"
@@ -75,7 +68,6 @@ export default function Navbar() {
                 Order Now
               </a>
 
-              {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="lg:hidden flex flex-col items-end justify-center w-10 h-10 gap-[6px]"
@@ -88,46 +80,36 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
-      {/* Mobile Menu — full takeover */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
-            animate={{ opacity: 1, clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
-            exit={{ opacity: 0, clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background lg:hidden"
           >
             <div className="flex flex-col h-full pt-28 pb-10 px-8 overflow-y-auto">
-              {/* Logo in mobile menu */}
               <div className="mb-12 flex justify-center">
                 <Logo size="xl" glow />
               </div>
 
               <nav className="flex flex-col items-center gap-2 flex-1">
-                {navLinks.map((link, i) => (
-                  <motion.a
+                {navLinks.map((link) => (
+                  <a
                     key={link.name}
                     href={link.href}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.15 + i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     onClick={() => setMobileOpen(false)}
                     className="text-2xl font-[var(--font-playfair)] text-foreground/80 hover:text-accent transition-colors py-3 tracking-wide"
                   >
                     {link.name}
-                  </motion.a>
+                  </a>
                 ))}
               </nav>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="space-y-3 mt-6"
-              >
+              <div className="space-y-3 mt-6">
                 <a href="tel:+17347296453" className="btn-primary w-full" onClick={() => setMobileOpen(false)}>
                   Call to Order
                 </a>
@@ -142,7 +124,7 @@ export default function Navbar() {
                     (734) 729-6453
                   </a>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         )}

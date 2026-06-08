@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useReveal } from "./useReveal";
 
 const schedule = [
   { day: "Monday", hours: "CLOSED" },
@@ -14,19 +13,12 @@ const schedule = [
 ];
 
 export default function Reservations() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const ref = useReveal();
 
   return (
-    <section id="reservations" className="section-padding bg-background-light relative" ref={ref}>
+    <section id="reservations" className="section-padding bg-background-light relative" ref={ref as React.RefObject<HTMLElement>}>
       <div className="max-w-[1100px] mx-auto">
-        {/* Header — centered */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-12 sm:mb-16"
-        >
+        <div className="reveal text-center mb-12 sm:mb-16">
           <span className="section-label">Reservations</span>
           <div className="accent-line mx-auto mt-4 mb-6" />
           <h2 className="heading-lg text-3xl sm:text-4xl lg:text-[3.25rem]">
@@ -37,16 +29,9 @@ export default function Reservations() {
             Call ahead to reserve your table or inquire about our catering options
             for your next meeting, event, or gathering.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Two-column: hours + CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="grid md:grid-cols-2 gap-8 lg:gap-16"
-        >
-          {/* Hours */}
+        <div className="reveal grid md:grid-cols-2 gap-8 lg:gap-16" style={{ transitionDelay: "0.15s" }}>
           <div>
             <h3 className="text-[10px] font-bold text-accent uppercase tracking-[0.3em] mb-6">
               Hours of Operation
@@ -66,7 +51,6 @@ export default function Reservations() {
             </div>
           </div>
 
-          {/* CTA side */}
           <div className="flex flex-col justify-center items-center text-center space-y-6 py-8">
             <div className="w-14 h-14 rounded-full border border-accent/20 flex items-center justify-center bg-accent/[0.04]">
               <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -104,7 +88,7 @@ export default function Reservations() {
               — Platters, trays & more for events.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
