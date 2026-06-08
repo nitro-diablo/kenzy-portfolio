@@ -18,22 +18,22 @@ export default function Reservations() {
               "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80')",
           }}
         />
-        <div className="absolute inset-0 bg-background/90" />
+        <div className="absolute inset-0 bg-background/92" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-5"
         >
           <p className="section-label">Reservations</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[var(--font-playfair)] font-bold leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[var(--font-playfair)] font-bold leading-[1.12]">
             Book Your{" "}
             <span className="text-accent">Table</span>
           </h2>
-          <p className="text-foreground-muted text-base sm:text-lg max-w-xl mx-auto px-2 sm:px-0">
+          <p className="text-foreground-muted text-base sm:text-lg max-w-lg mx-auto">
             Call ahead to reserve your table or inquire about our catering options
             for your next meeting, event, or gathering.
           </p>
@@ -42,16 +42,16 @@ export default function Reservations() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-8 sm:mt-12 glass rounded-2xl p-5 sm:p-8 md:p-12 warm-glow"
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 sm:mt-14 glass rounded-lg p-6 sm:p-10 lg:p-12 warm-glow"
         >
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-10">
             {/* Hours */}
             <div className="text-left space-y-4">
-              <h3 className="text-accent font-semibold uppercase tracking-wider text-sm">
+              <h3 className="text-accent font-semibold uppercase tracking-[0.15em] text-[11px]">
                 Hours of Operation
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-0">
                 {[
                   { day: "Monday", hours: "CLOSED" },
                   { day: "Tuesday", hours: "8:00am – 3:00pm" },
@@ -63,9 +63,9 @@ export default function Reservations() {
                 ].map((schedule) => (
                   <div
                     key={schedule.day}
-                    className="flex justify-between items-center py-2 border-b border-border/50"
+                    className="flex justify-between items-center py-2.5 border-b border-border/30"
                   >
-                    <span className="text-foreground text-sm font-medium">{schedule.day}</span>
+                    <span className="text-foreground text-sm">{schedule.day}</span>
                     <span
                       className={`text-sm ${
                         schedule.hours === "CLOSED"
@@ -82,21 +82,21 @@ export default function Reservations() {
 
             {/* CTA Side */}
             <div className="flex flex-col justify-center items-center text-center space-y-6">
-              <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center">
-                <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
+                <svg className="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                 </svg>
               </div>
               <div>
-                <p className="text-foreground-muted text-sm mb-2">Call to Reserve</p>
+                <p className="text-foreground-muted text-xs uppercase tracking-[0.15em] mb-2">Call to Reserve</p>
                 <a
                   href="tel:+17347296453"
-                  className="text-3xl font-[var(--font-playfair)] font-bold text-accent hover:text-accent-light transition-colors"
+                  className="text-2xl sm:text-3xl font-[var(--font-playfair)] font-bold text-accent hover:text-accent-light transition-colors"
                 >
                   (734) 729-6453
                 </a>
               </div>
-              <p className="text-foreground-muted text-sm">
+              <p className="text-foreground-muted text-sm leading-relaxed">
                 Walk-ins always welcome!<br />
                 For parties of 6+, please call ahead.
               </p>
@@ -122,11 +122,11 @@ export default function Reservations() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-8 glass rounded-lg p-4 inline-block"
+          className="mt-8 glass rounded-sm px-6 py-4 inline-block"
         >
           <p className="text-foreground-muted text-sm">
-            <span className="text-accent font-medium">Catering Available!</span>{" "}
-            Platters, trays, sandwiches, dips, and more for your next event. Call to inquire!
+            <span className="text-accent font-medium">Catering Available</span>{" "}
+            — Platters, trays, sandwiches, dips, and more for your next event.
           </p>
         </motion.div>
       </div>

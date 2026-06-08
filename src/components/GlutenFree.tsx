@@ -10,35 +10,35 @@ export default function GlutenFree() {
   return (
     <section className="section-padding bg-background-light relative overflow-hidden" ref={ref}>
       {/* Background accent */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/5 blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-accent/5 blur-3xl" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.03] blur-[100px]" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-accent/[0.03] blur-[80px]" />
 
       <div className="max-w-7xl mx-auto relative">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-6"
           >
             <p className="section-label">Celiac Friendly</p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-[var(--font-playfair)] font-bold leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[var(--font-playfair)] font-bold leading-[1.12]">
               The Area&apos;s Largest{" "}
               <span className="text-accent">Gluten Free</span> Menu
             </h2>
             <div className="divider" />
-            <p className="text-foreground-muted text-lg leading-relaxed">
+            <p className="text-foreground-muted text-[15px] sm:text-base leading-[1.8]">
               Aside from our regular menu, Mr. Mike&apos;s Grill offers the area&apos;s largest
               Gluten Free menu, prepared safely and deliciously for all gluten free patrons.
             </p>
-            <p className="text-foreground-muted text-lg leading-relaxed">
+            <p className="text-foreground-muted text-[15px] sm:text-base leading-[1.8]">
               With one of the owners having Celiac Disease, the family takes pride in the needs
               of gluten free and has created a positive staff culture around it.
             </p>
 
             {/* Safety Features */}
-            <div className="grid gap-4 pt-4">
+            <div className="grid gap-3.5 pt-4">
               {[
                 "Two separate dedicated fryers",
                 "Separate utensils & toaster",
@@ -50,18 +50,18 @@ export default function GlutenFree() {
                   key={feature}
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-                  className="flex items-center gap-3"
+                  transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
+                  className="flex items-center gap-3.5"
                 >
-                  <div className="w-6 h-6 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <div className="w-2 h-2 rounded-full bg-accent" />
+                  <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 border border-accent/20">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                   </div>
                   <span className="text-foreground text-sm font-medium">{feature}</span>
                 </motion.div>
               ))}
             </div>
 
-            <a href="#menu" className="btn-primary inline-flex mt-4 w-full sm:w-auto">
+            <a href="#menu" className="btn-primary inline-flex mt-6 w-full sm:w-auto">
               View GF Menu
             </a>
           </motion.div>
@@ -70,10 +70,10 @@ export default function GlutenFree() {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="relative rounded-xl overflow-hidden">
+            <div className="relative rounded-sm overflow-hidden">
               <div
                 className="aspect-[4/3] lg:aspect-square bg-cover bg-center"
                 style={{
@@ -84,9 +84,9 @@ export default function GlutenFree() {
               <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
             </div>
             {/* Overlay card */}
-            <div className="absolute -bottom-4 -left-4 lg:left-4 glass rounded-xl p-5 warm-glow">
-              <p className="text-accent font-bold text-2xl">100%</p>
-              <p className="text-foreground-muted text-xs mt-1">Safe & Certified GF Kitchen</p>
+            <div className="absolute -bottom-4 left-4 sm:-bottom-5 sm:left-6 glass rounded-lg p-5 warm-glow">
+              <p className="text-accent font-bold text-2xl font-[var(--font-playfair)]">100%</p>
+              <p className="text-foreground-muted text-[11px] mt-1.5 tracking-wide uppercase">Safe & Certified GF</p>
             </div>
           </motion.div>
         </div>
