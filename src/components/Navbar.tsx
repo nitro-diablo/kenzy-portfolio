@@ -8,6 +8,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 const links = [
   { href: "#work", label: "Work" },
   { href: "#services", label: "Services" },
+  { href: "#packages", label: "Packages" },
   { href: "#testimonials", label: "Testimonials" },
   { href: "#contact", label: "Contact" },
 ];
@@ -40,8 +41,10 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass shadow-lg shadow-black/5" : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${
+        scrolled
+          ? "border-[color:var(--card-border)] bg-background/80 shadow-lg shadow-black/5"
+          : "border-transparent bg-background/40"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
